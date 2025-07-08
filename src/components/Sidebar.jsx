@@ -1,20 +1,12 @@
 import React from 'react';
 import {
-  FaHome,
-  FaUser,
-  FaTools,
-  FaFileAlt,
-  FaLaptopCode,
-  FaCogs,
-  FaEnvelope,
-  FaTwitter,
-  FaQuoteRight,
-
+  FaHome, FaUser, FaTools, FaFileAlt, FaLaptopCode,
+  FaCogs, FaEnvelope, FaQuoteRight
 } from 'react-icons/fa';
-import { FaGithub, FaLinkedin, FaInstagram} from 'react-icons/fa6';
+import { FaGithub, FaLinkedin, FaInstagram, FaTwitter } from 'react-icons/fa6';
 import profileImage from '../assets/profile.png';
 
-const Sidebar = () => {
+const Sidebar = ({ isOpen }) => {
   const navItems = [
     { href: '#home', icon: <FaHome />, label: 'Home' },
     { href: '#about', icon: <FaUser />, label: 'About' },
@@ -27,10 +19,16 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside className="bg-gradient-to-b from-black to-gray-800 text-white w-64 h-screen fixed top-0 left-0 flex flex-col items-center py-10 shadow-xl border-r-2 border-blue-400 z-50">
-    
+    <aside
+      className={`
+        fixed top-0 left-0 h-screen w-64 bg-gradient-to-b from-black to-gray-800 text-white z-40 py-10 px-4
+        transition-transform duration-300
+        ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+        lg:translate-x-0
+      `}
+    >
       {/* Profile Image */}
-      <div className="w-36 h-36 rounded-full overflow-hidden border-4 border-blue-400 shadow-md">
+      <div className="w-36 h-36 rounded-full overflow-hidden border-4 border-blue-400 shadow-md mx-auto">
         <img src={profileImage} alt="Profile" className="w-full h-full object-cover" />
       </div>
 
@@ -42,39 +40,35 @@ const Sidebar = () => {
         <a href="https://github.com/Hariskhan55" target="_blank" rel="noopener noreferrer">
           <FaGithub className="text-2xl hover:text-blue-400 transition" />
         </a>
-        <a href="https://www.linkedin.com/in/muhammad-haris-6b682a274/" target="_blank" rel="noopener noreferrer">
+        <a href="https://linkedin.com/in/muhammad-haris-6b682a274/" target="_blank" rel="noopener noreferrer">
           <FaLinkedin className="text-2xl hover:text-blue-400 transition" />
         </a>
-        <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
           <FaInstagram className="text-2xl hover:text-pink-400 transition" />
         </a>
-        <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer">
-          <FaTwitter className="text-2xl hover:text-black-400 transition" />
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+          <FaTwitter className="text-2xl hover:text-blue-400 transition" />
         </a>
       </div>
 
       {/* Navigation Links */}
-      <nav className="mt-10 w-full px-8 space-y-5">
+      <nav className="mt-10 w-full space-y-5">
         {navItems.map((item, index) => (
-          <NavItem key={index} {...item} />
+          <a
+            key={index}
+            href={item.href}
+            className="group flex items-center gap-3 text-gray-300 px-3 py-2 hover:text-blue-400 transition-all"
+          >
+            <span className="text-lg">{item.icon}</span>
+            <span className="text-sm font-medium relative">
+              {item.label}
+              <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-blue-400 group-hover:w-full transition-all duration-300"></span>
+            </span>
+          </a>
         ))}
       </nav>
     </aside>
   );
 };
-
-// Nav Item Component with underline on hover
-const NavItem = ({ href, icon, label }) => (
-  <a
-    href={href}
-    className="group flex items-center gap-3 text-gray-300 px-3 py-2 transition-all duration-300 hover:text-blue-400"
-  >
-    <span className="text-lg">{icon}</span>
-    <span className="relative text-sm font-medium">
-      {label}
-      <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-blue-400 group-hover:w-full transition-all duration-300"></span>
-    </span>
-  </a>
-);
 
 export default Sidebar;

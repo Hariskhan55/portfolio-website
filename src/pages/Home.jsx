@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <section
       id="home"
-      className="min-h-screen md:ml-64 bg-gradient-to-b from-black to-gray-800 text-white py-20 px-6 flex items-center"
+      className="max-w-7xl mx-auto min-h-screen md:ml-64 bg-gradient-to-b from-black to-gray-800 text-white py-20 px-6 flex items-center"
     >
       <div className="flex flex-col lg:flex-row items-center gap-12 max-w-6xl mx-auto w-full">
         {/* Image Section */}
