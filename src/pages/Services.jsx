@@ -27,33 +27,38 @@ const services = [
 
 const Services = () => {
   return (
-    <section id="services" className="min-h-screen md:ml-64 bg-gradient-to-b from-black to-gray-900 text-white py-20 px-6">
+    <section
+      id="services"
+      className="transition-all duration-300 bg-gradient-to-b from-black to-gray-700 text-white py-[5%] px-[5%] min-h-screen"
+    >
       <div className="max-w-6xl mx-auto">
-        <motion.h1
-          className="text-4xl font-bold text-blue-400 mb-16 text-center"
+        {/* Section Header */}
+        <motion.h2
+          className="text-4xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-600 to-cyan-400 uppercase mb-16 tracking-wider"
           initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
           My Services
-        </motion.h1>
+        </motion.h2>
 
-        <div className="space-y-12">
+        {/* Grid Layout */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
           {services.map((service, index) => (
             <motion.div
               key={index}
-              className="flex flex-col md:flex-row items-center gap-6 bg-gray-800 border-l-4 border-blue-500 px-6 py-6 rounded-lg shadow-lg hover:shadow-blue-500/30 hover:border-blue-400 transition-all duration-300"
-              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, delay: index * 0.2 }}
+              className="bg-gray-900 bg-opacity-60 backdrop-blur-md rounded-2xl border border-blue-500 p-6 shadow-md hover:shadow-blue-400/30 transition-all duration-300 group"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: index * 0.15 }}
             >
-              <div className="text-blue-400 text-5xl md:w-1/6 text-center md:text-left">
-                {service.icon}
+              <div className="flex items-center gap-4 mb-4">
+                <div className="text-blue-400 text-4xl p-3 bg-gray-800 rounded-full border border-blue-600 group-hover:scale-105 transition-transform duration-300">
+                  {service.icon}
+                </div>
+                <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition">{service.title}</h3>
               </div>
-              <div className="md:w-5/6">
-                <h2 className="text-2xl font-semibold text-white mb-2">{service.title}</h2>
-                <p className="text-gray-300 text-sm leading-relaxed">{service.description}</p>
-              </div>
+              <p className="text-gray-400 text-sm leading-relaxed">{service.description}</p>
             </motion.div>
           ))}
         </div>

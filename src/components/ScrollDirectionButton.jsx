@@ -5,12 +5,14 @@ import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
 const ScrollDirectionButton = () => {
   const [scrollDirection, setScrollDirection] = useState(null);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Determine direction
+      setVisible(currentScrollY > 100);
+
       if (currentScrollY > lastScrollY && currentScrollY > 200) {
         setScrollDirection('down');
       } else if (currentScrollY < lastScrollY) {
@@ -32,13 +34,15 @@ const ScrollDirectionButton = () => {
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   };
 
+  if (!visible) return null;
+
   return (
     <button
       onClick={scrollDirection === 'up' ? scrollToTop : scrollToBottom}
-      className="fixed bottom-6 right-6 bg-gradient-to-r from-blue-600 to-cyan-500 text-white p-4 rounded-full shadow-lg hover:scale-110 hover:shadow-cyan-500/40 transition-all duration-300 animate-bounce z-50"
-      aria-label="Scroll Button"
+      className="fixed bottom-6 right-6 md:bottom-8 md:right-8 bg-white border border-gray-300 shadow-xl hover:shadow-cyan-400/50 text-cyan-600 p-3 rounded-full transition-all duration-300 hover:scale-110 z-50"
+      aria-label={scrollDirection === 'up' ? 'Scroll to Top' : 'Scroll to Bottom'}
     >
-      {scrollDirection === 'up' ? <FaArrowUp size={20} /> : <FaArrowDown size={20} />}
+      {scrollDirection === 'up' ? <FaArrowUp size={18} /> : <FaArrowDown size={18} />}
     </button>
   );
 };

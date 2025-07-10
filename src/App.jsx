@@ -1,35 +1,36 @@
-
-import Footer from './components/Footer'
-import Navbar from './components/Navbar'
-import ScrollDirectionButton from './components/ScrollDirectionButton'
-import Sidebar from './components/Sidebar'
-import Testimonials from './components/Testimonials'
-import About from './pages/About'
-import Contact from './pages/Contact'
-import Home from './pages/Home'
-import Projects from './pages/Projects'
-import Resume from './pages/Resume'
-import Services from './pages/Services'
-import Skills from './pages/Skills'
+import React, { useState } from 'react';
+import Sidebar from './components/Sidebar';
+import Home from './pages/Home';
+import About from './pages/About';
+import Skills from './pages/Skills';
+import Resume from './pages/Resume';
+import Projects from './pages/Projects';
+import Services from './pages/Services';
+import Testimonials from './pages/Testimonials';
+import Contact from './pages/Contact';
+import ScrollDirectionButton from './components/ScrollDirectionButton';
 
 function App() {
+  const [isOpen, setIsOpen] = useState(true);
+  const toggleSidebar = () => setIsOpen(prev => !prev);
 
   return (
-    <>
-  <Sidebar/>
-  <Home />
-  <Navbar/>
-  <ScrollDirectionButton />
-  <About />
-  <Skills/>
-  <Resume />
-  <Projects />
-  <Services />
-  <Testimonials/>
-  <Contact/>
-  <Footer/>
-  </>
-  )
+    <div className="flex">
+      <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
+      <ScrollDirectionButton />
+
+      <main className={`flex-1 transition-all duration-300 ${isOpen ? 'ml-64' : 'ml-16'}`}>
+        <section id="home"><Home /></section>
+        <section id="about"><About /></section>
+        <section id="skills"><Skills /></section>
+        <section id="resume"><Resume /></section>
+        <section id="projects"><Projects /></section>
+        <section id="services"><Services /></section>
+        <section id="testimonials"><Testimonials /></section>
+        <section id="contact"><Contact /></section>
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;

@@ -1,4 +1,3 @@
-// File: src/pages/Projects.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
 
@@ -55,14 +54,14 @@ const projects = [
     tech: 'React • Vite • Tailwind CSS',
     image: portfolioImg,
   },
-   {
+  {
     title: 'Nursing Website',
-    description: 'Nursing website for hospital nurse detail using react.',
+    description: 'Nursing website for hospital nurse detail using React.',
     tech: 'React • Tailwind CSS',
     image: nursingImg,
   },
-   {
-    title: 'Meme Genarator',
+  {
+    title: 'Meme Generator',
     description: 'A Meme Generator using HTML, CSS, and JavaScript.',
     tech: 'JavaScript',
     image: memegenaratorImg,
@@ -73,11 +72,12 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="min-h-screen md:ml-64 bg-gradient-to-b from-black to-gray-800 text-white py-20 px-6"
+      className="transition-all duration-300 bg-gradient-to-b from-black to-gray-700 text-white py-[5%] px-[5%] min-h-screen"
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
+        {/* Section Heading */}
         <motion.h1
-          className="text-4xl font-bold text-blue-400 mb-12 text-center"
+          className="text-4xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-600 to-cyan-400 uppercase mb-16"
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -85,24 +85,27 @@ const Projects = () => {
           My Projects
         </motion.h1>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Project Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              className="bg-gray-800 border border-blue-500 rounded-xl overflow-hidden shadow-lg hover:shadow-blue-500/30 hover:scale-105 transition duration-300"
-              initial={{ opacity: 0, y: 40 }}
+              className="bg-gray-900 border border-blue-500 rounded-2xl overflow-hidden shadow-md hover:shadow-blue-500/30 transition transform hover:-translate-y-2 duration-300 group"
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-48 object-cover"
+                className="w-full h-48 object-cover group-hover:opacity-90 transition duration-300"
               />
               <div className="p-6">
-                <h2 className="text-xl font-semibold text-blue-400 mb-2">{project.title}</h2>
-                <p className="text-gray-400 text-sm mb-2">{project.description}</p>
-                <p className="text-xs text-gray-500 italic">{project.tech}</p>
+                <h2 className="text-xl font-semibold text-blue-400 mb-2 group-hover:text-cyan-400 transition">
+                  {project.title}
+                </h2>
+                <p className="text-gray-400 text-sm mb-3">{project.description}</p>
+                <span className="text-xs text-gray-500 italic">{project.tech}</span>
               </div>
             </motion.div>
           ))}
