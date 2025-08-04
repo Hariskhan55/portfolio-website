@@ -1,62 +1,94 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-
-const skills = [
-  { name: 'HTML', level: 100 },
-  { name: 'CSS', level: 95 },
-  { name: 'JavaScript', level: 90 },
-  { name: 'React', level: 85 },
-  { name: 'Node.js', level: 75 },
-  { name: 'Tailwind CSS', level: 90 },
-  { name: 'MySQL', level: 75 },
-  { name: 'GitHub', level: 80 },
-  { name: 'Figma (UI/UX)', level: 85 },
-  { name: 'Canva (Graphics)', level: 100 },
-];
+import { useTheme } from '../context/ThemeContext';
+import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaDatabase, FaGithub, FaFigma } from 'react-icons/fa';
 
 const Skills = () => {
-  return (
-    <section
-      id="skills"
-      className="transition-all duration-300 bg-gradient-to-b from-black to-gray-800 text-white py-[5%] px-[5%] min-h-screen"
-    >
-      <div className="max-w-6xl mx-auto w-full">
-        {/* Header */}
-        <motion.h2
-          className="text-4xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-600 to-cyan-400 mb-12 uppercase tracking-wide"
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          My Skills
-        </motion.h2>
+  const { isDark } = useTheme();
+  
+  const skills = [
+    { name: 'HTML5', level: 95, icon: FaHtml5, color: 'text-orange-500' },
+    { name: 'CSS3', level: 90, icon: FaCss3Alt, color: 'text-blue-500' },
+    { name: 'JavaScript', level: 88, icon: FaJs, color: 'text-yellow-500' },
+    { name: 'React', level: 85, icon: FaReact, color: 'text-cyan-500' },
+    { name: 'Node.js', level: 82, icon: FaNodeJs, color: 'text-green-500' },
+    { name: 'Database', level: 78, icon: FaDatabase, color: 'text-purple-500' },
+    { name: 'GitHub', level: 90, icon: FaGithub, color: 'text-gray-600' },
+    { name: 'Figma', level: 85, icon: FaFigma, color: 'text-pink-500' },
+  ];
 
-        {/* Grid Container */}
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-10">
+  return (
+    <section className={`min-h-screen pt-16 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        {/* Header */}
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <h2 className={`text-4xl lg:text-5xl font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+            Skills & Expertise
+          </h2>
+          <p className={`text-xl max-w-2xl mx-auto ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+            Technologies and tools I use to bring ideas to life
+          </p>
+        </motion.div>
+
+        {/* Skills Grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {skills.map((skill, index) => (
             <motion.div
               key={index}
-              className="bg-gray-900 bg-opacity-50 backdrop-blur-lg rounded-xl p-5 shadow-lg border border-blue-500 group hover:shadow-blue-500/30 transition-all"
-              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              className={`p-6 rounded-2xl shadow-lg text-center ${
+                isDark ? 'bg-gray-800' : 'bg-gray-50'
+              }`}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.05, y: -5 }}
             >
-              <div className="flex justify-between mb-2">
-                <h4 className="text-blue-300 font-medium text-sm">{skill.name}</h4>
-                <span className="text-sm text-blue-300 font-semibold">{skill.level}%</span>
-              </div>
-              <div className="w-full h-3 bg-gray-700 rounded-full overflow-hidden">
+              <skill.icon className={`text-5xl ${skill.color} mx-auto mb-4`} />
+              <h3 className={`text-lg font-semibold mb-3 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                {skill.name}
+              </h3>
+              
+              {/* Progress Bar */}
+              <div className={`w-full rounded-full h-2 mb-2 ${isDark ? 'bg-gray-700' : 'bg-gray-200'}`}>
                 <motion.div
-                  className="h-full bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-600 rounded-full group-hover:from-blue-400 group-hover:to-cyan-500 transition-all duration-700"
-                  style={{ width: `${skill.level}%` }}
+                  className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full"
                   initial={{ width: 0 }}
-                  animate={{ width: `${skill.level}%` }}
-                  transition={{ duration: 1.2, delay: 0.1 * index }}
+                  whileInView={{ width: `${skill.level}%` }}
+                  transition={{ duration: 1.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
                 />
               </div>
+              <span className={`text-sm font-medium ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                {skill.level}%
+              </span>
             </motion.div>
           ))}
         </div>
+
+        {/* Additional Info */}
+        <motion.div
+          className={`p-8 rounded-2xl shadow-lg text-center ${isDark ? 'bg-gray-800' : 'bg-gray-50'}`}
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <h3 className={`text-2xl font-semibold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+            Always Learning
+          </h3>
+          <p className={`text-lg leading-relaxed max-w-3xl mx-auto ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+            Technology evolves rapidly, and I'm committed to staying current with the latest trends, 
+            frameworks, and best practices. Currently exploring advanced React patterns, serverless 
+            architectures, and modern DevOps practices.
+          </p>
+        </motion.div>
       </div>
     </section>
   );

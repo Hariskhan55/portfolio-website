@@ -1,88 +1,133 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTheme } from '../context/ThemeContext';
+import { FaGraduationCap, FaBriefcase, FaAward, FaUsers } from 'react-icons/fa';
 import aboutImage from '../assets/about.png';
-import {
-  FaHtml5,
-  FaCss3Alt,
-  FaJs,
-  FaReact,
-  FaNodeJs,
-  FaGithub,
-  FaDatabase,
-  FaFigma
-} from 'react-icons/fa';
 
 const About = () => {
+  const { isDark } = useTheme();
+  
+  const stats = [
+    { icon: FaBriefcase, label: 'Projects', value: '50+' },
+    { icon: FaUsers, label: 'Clients', value: '25+' },
+    { icon: FaAward, label: 'Experience', value: '3+' },
+    { icon: FaGraduationCap, label: 'Certifications', value: '5+' },
+  ];
+
   return (
-    <section
-      id="about"
-      className="min-h-screen bg-gradient-to-b from-black to-gray-700 text-white px-[5%] py-[5%] transition-all duration-300"
-    >
-      <div className="flex flex-col-reverse lg:flex-row items-center gap-[5%] max-w-[90%] mx-auto">
-        {/* Text Section */}
+    <section className={`min-h-screen pt-16 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        {/* Header */}
         <motion.div
-          className="w-full lg:w-[55%] text-center lg:text-left"
-          initial={{ opacity: 0, x: 80 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
         >
-          <motion.h2
-            className="text-[6vw] sm:text-[4vw] lg:text-[2.5vw] font-extrabold bg-gradient-to-r from-blue-400 via-blue-600 to-cyan-400 text-transparent bg-clip-text uppercase mb-6"
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
+          <h2 className={`text-4xl lg:text-5xl font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
             About Me
-          </motion.h2>
-
-          <p className="text-[3.5vw] sm:text-[2vw] lg:text-[1.1vw] text-gray-300 leading-relaxed mb-4">
-            I’m <span className="text-blue-400 font-semibold">Muhammad Haris</span>, a passionate
-            frontend and full stack developer based in Islamabad. I hold a degree in Software
-            Engineering from COMSATS University and currently work at
-            <span className="text-blue-400 font-semibold"> SoftXcape Developers</span>.
+          </h2>
+          <p className={`text-xl max-w-2xl mx-auto ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+            Passionate developer with expertise in modern web technologies
           </p>
-
-          <p className="text-[3.5vw] sm:text-[2vw] lg:text-[1.1vw] text-gray-400 leading-relaxed mb-6">
-            I love crafting modern, user-friendly web applications using technologies like
-            <span className="text-teal-400"> React</span>,
-            <span className="text-green-400"> Node.js</span>, and
-            <span className="text-sky-400"> Tailwind CSS</span>. I’m always excited to solve
-            real-world problems and explore new tools to improve user experience.
-          </p>
-
-          {/* Skills Icons */}
-          <div className="flex flex-wrap justify-center lg:justify-start gap-[3%] text-[7vw] sm:text-[3vw] lg:text-[2vw] text-blue-400 mt-6">
-            {[FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaDatabase, FaGithub, FaFigma].map(
-              (Icon, idx) => (
-                <motion.div
-                  key={idx}
-                  whileHover={{ scale: 1.2, rotate: 5 }}
-                  className="transition-all"
-                >
-                  <Icon className="hover:text-cyan-300 transition" />
-                </motion.div>
-              )
-            )}
-          </div>
         </motion.div>
 
-        {/* Image Section */}
-        <motion.div
-          className="w-full lg:w-[45%] flex justify-center"
-          initial={{ opacity: 0, x: -80 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-        >
+        {/* Main Content */}
+        <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
+          {/* Image */}
           <motion.div
-            className="overflow-hidden rounded-[3vw] shadow-2xl hover:shadow-blue-500/40 transition-all duration-500"
-            whileHover={{ scale: 1.05 }}
+            className="flex justify-center"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
           >
-            <img
-              src={aboutImage}
-              alt="About Haris"
-              className="w-[80%] sm:w-[60%] md:w-[50%] lg:w-full max-w-[400px] h-auto object-cover rounded-xl"
-            />
+            <div className="relative">
+              <img
+                src={aboutImage}
+                alt="Muhammad Haris"
+                className="w-80 h-80 lg:w-96 lg:h-96 object-cover rounded-2xl shadow-2xl"
+              />
+              <motion.div
+                className="absolute -bottom-4 -right-4 px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg shadow-lg"
+                animate={{ rotate: [0, 5, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                <span className="text-sm font-semibold">Islamabad, PK</span>
+              </motion.div>
+            </div>
           </motion.div>
+
+          {/* Content */}
+          <motion.div
+            className="text-center lg:text-left"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h3 className={`text-2xl font-semibold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+              Professional Overview
+            </h3>
+            <p className={`text-lg leading-relaxed mb-6 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+              I'm <span className="text-blue-500 font-semibold">Muhammad Haris</span>, a passionate 
+              Full Stack Developer based in Islamabad, Pakistan. With a strong foundation in Software 
+              Engineering from COMSATS University, I specialize in creating modern, scalable web applications.
+            </p>
+            <p className={`text-lg leading-relaxed mb-8 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+              My expertise spans across frontend technologies like React and Vue.js, backend development 
+              with Node.js, and modern design principles. I'm committed to delivering high-quality solutions 
+              that exceed client expectations.
+            </p>
+
+            {/* Skills */}
+            <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
+              {['React', 'Node.js', 'JavaScript', 'TypeScript', 'Tailwind CSS', 'MongoDB'].map((skill, index) => (
+                <span
+                  key={index}
+                  className={`px-3 py-1 rounded-full text-sm font-medium ${
+                    isDark 
+                      ? 'bg-gray-800 text-gray-300' 
+                      : 'bg-gray-100 text-gray-700'
+                  }`}
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Stats */}
+        <motion.div
+          className="grid grid-cols-2 lg:grid-cols-4 gap-8"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          {stats.map((stat, index) => (
+            <motion.div
+              key={index}
+              className={`text-center p-6 rounded-2xl shadow-lg ${
+                isDark ? 'bg-gray-800' : 'bg-gray-50'
+              }`}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.05 }}
+            >
+              <stat.icon className="text-3xl text-blue-500 mx-auto mb-3" />
+              <h3 className={`text-2xl font-bold mb-1 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                {stat.value}
+              </h3>
+              <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                {stat.label}
+              </p>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>

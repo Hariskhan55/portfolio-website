@@ -1,67 +1,116 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTheme } from '../context/ThemeContext';
 import { FaCode, FaServer, FaPencilRuler, FaPalette } from 'react-icons/fa';
 
-const services = [
-  {
-    title: 'Frontend Development',
-    icon: <FaCode />,
-    description: 'Building responsive and modern interfaces using React, JavaScript, and Tailwind CSS.',
-  },
-  {
-    title: 'Backend Development',
-    icon: <FaServer />,
-    description: 'Developing scalable and secure APIs with Node.js, Express, and database integration using MySQL/MSSQL.',
-  },
-  {
-    title: 'UI/UX Design (Figma)',
-    icon: <FaPencilRuler />,
-    description: 'Designing user-friendly layouts and wireframes with a focus on usability and aesthetics using Figma.',
-  },
-  {
-    title: 'Graphics Design (Canva)',
-    icon: <FaPalette />,
-    description: 'Creating social media posts, infographics, and branding elements using Canva.',
-  },
-];
-
 const Services = () => {
-  return (
-    <section
-      id="services"
-      className="transition-all duration-300 bg-gradient-to-b from-black to-gray-700 text-white py-[5%] px-[5%] min-h-screen"
-    >
-      <div className="max-w-6xl mx-auto">
-        {/* Section Header */}
-        <motion.h2
-          className="text-4xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-600 to-cyan-400 uppercase mb-16 tracking-wider"
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          My Services
-        </motion.h2>
+  const { isDark } = useTheme();
+  
+  const services = [
+    {
+      icon: FaCode,
+      title: 'Frontend Development',
+      description: 'Creating responsive and interactive user interfaces using modern frameworks and libraries.',
+      features: ['React & Vue.js Development', 'Responsive Web Design', 'Performance Optimization']
+    },
+    {
+      icon: FaServer,
+      title: 'Backend Development',
+      description: 'Building robust server-side applications and APIs with scalable architecture.',
+      features: ['RESTful API Development', 'Database Design & Integration', 'Authentication & Security']
+    },
+    {
+      icon: FaPencilRuler,
+      title: 'UI/UX Design',
+      description: 'Designing intuitive and user-friendly interfaces with focus on user experience.',
+      features: ['User Research & Analysis', 'Wireframing & Prototyping', 'Design Systems']
+    },
+    {
+      icon: FaPalette,
+      title: 'Full Stack Solutions',
+      description: 'Complete web application development from concept to deployment.',
+      features: ['End-to-end Development', 'Project Management', 'Quality Assurance']
+    },
+  ];
 
-        {/* Grid Layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
+  return (
+    <section className={`min-h-screen pt-16 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        {/* Header */}
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <h2 className={`text-4xl lg:text-5xl font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+            Services
+          </h2>
+          <p className={`text-xl max-w-2xl mx-auto ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+            Comprehensive digital solutions to help your business grow
+          </p>
+        </motion.div>
+
+        {/* Services Grid */}
+        <div className="grid md:grid-cols-2 gap-8">
           {services.map((service, index) => (
             <motion.div
               key={index}
-              className="bg-gray-900 bg-opacity-60 backdrop-blur-md rounded-2xl border border-blue-500 p-6 shadow-md hover:shadow-blue-400/30 transition-all duration-300 group"
-              initial={{ opacity: 0, y: 30 }}
+              className={`p-8 rounded-2xl shadow-lg ${isDark ? 'bg-gray-800' : 'bg-gray-50'}`}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: index * 0.15 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.02, y: -5 }}
             >
-              <div className="flex items-center gap-4 mb-4">
-                <div className="text-blue-400 text-4xl p-3 bg-gray-800 rounded-full border border-blue-600 group-hover:scale-105 transition-transform duration-300">
-                  {service.icon}
+              {/* Header */}
+              <div className="flex items-start gap-4 mb-6">
+                <div className="p-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl shadow-lg">
+                  <service.icon className="text-2xl" />
                 </div>
-                <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition">{service.title}</h3>
+                <div className="flex-1">
+                  <h3 className={`text-2xl font-semibold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                    {service.title}
+                  </h3>
+                  <p className={`leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                    {service.description}
+                  </p>
+                </div>
               </div>
-              <p className="text-gray-400 text-sm leading-relaxed">{service.description}</p>
+
+              {/* Features */}
+              <div className="space-y-2">
+                {service.features.map((feature, featureIndex) => (
+                  <div key={featureIndex} className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <span className={isDark ? 'text-gray-400' : 'text-gray-600'}>
+                      {feature}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </motion.div>
           ))}
         </div>
+
+        {/* CTA Section */}
+        <motion.div
+          className="text-center mt-16"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <motion.a
+            href="mailto:harisakbar5566@gmail.com"
+            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all shadow-lg"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Start Your Project
+          </motion.a>
+        </motion.div>
       </div>
     </section>
   );

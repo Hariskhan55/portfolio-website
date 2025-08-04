@@ -1,111 +1,135 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-
-import calculatorImg from '../assets/projects/calculator.png';
-import ageCalcImg from '../assets/projects/age-calculator.png';
-import weatherImg from '../assets/projects/weather.png';
-import ecommerceImg from '../assets/projects/ecommerce.png';
-import businessImg from '../assets/projects/business-nexus.png';
-import collegeImg from '../assets/projects/college.png';
-import portfolioImg from '../assets/projects/portfolio.png';
-import nursingImg from '../assets/projects/nursing.png';
-import memegenaratorImg from '../assets/projects/memegenarator.png';
-
-const projects = [
-  {
-    title: 'Calculator',
-    description: 'A basic calculator built using HTML, CSS, and JavaScript.',
-    tech: 'JavaScript',
-    image: calculatorImg,
-  },
-  {
-    title: 'Age Calculator',
-    description: 'Calculates age based on date of birth using JavaScript.',
-    tech: 'JavaScript',
-    image: ageCalcImg,
-  },
-  {
-    title: 'Weather App',
-    description: 'Fetches real-time weather data using JavaScript and OpenWeather API.',
-    tech: 'JavaScript',
-    image: weatherImg,
-  },
-  {
-    title: 'E-commerce Website',
-    description: 'An online shopping site using HTML, CSS, and JavaScript.',
-    tech: 'JavaScript',
-    image: ecommerceImg,
-  },
-  {
-    title: 'Business Nexus Website',
-    description: 'Responsive business site built with React, Vite, Tailwind CSS.',
-    tech: 'React • Vite • Tailwind CSS',
-    image: businessImg,
-  },
-  {
-    title: 'College Management System',
-    description: 'Full-stack app with admissions and student data, using Node.js and MSSQL.',
-    tech: 'HTML • CSS • JS • Node.js • MSSQL',
-    image: collegeImg,
-  },
-  {
-    title: 'Portfolio Website',
-    description: 'Personal portfolio showcasing projects using React and Tailwind.',
-    tech: 'React • Vite • Tailwind CSS',
-    image: portfolioImg,
-  },
-  {
-    title: 'Nursing Website',
-    description: 'Nursing website for hospital nurse detail using React.',
-    tech: 'React • Tailwind CSS',
-    image: nursingImg,
-  },
-  {
-    title: 'Meme Generator',
-    description: 'A Meme Generator using HTML, CSS, and JavaScript.',
-    tech: 'JavaScript',
-    image: memegenaratorImg,
-  },
-];
+import { useTheme } from '../context/ThemeContext';
+import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
 
 const Projects = () => {
-  return (
-    <section
-      id="projects"
-      className="transition-all duration-300 bg-gradient-to-b from-black to-gray-700 text-white py-[5%] px-[5%] min-h-screen"
-    >
-      <div className="max-w-7xl mx-auto">
-        {/* Section Heading */}
-        <motion.h1
-          className="text-4xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-600 to-cyan-400 uppercase mb-16"
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          My Projects
-        </motion.h1>
+  const { isDark } = useTheme();
+  
+  const projects = [
+    {
+      title: 'Business Nexus Website',
+      description: 'Modern responsive business platform with advanced features and optimized performance.',
+      tech: ['React', 'Tailwind CSS', 'Vite'],
+      category: 'Web App'
+    },
+    {
+      title: 'E-commerce Platform',
+      description: 'Full-featured online shopping platform with payment integration and admin dashboard.',
+      tech: ['JavaScript', 'HTML', 'CSS'],
+      category: 'E-commerce'
+    },
+    {
+      title: 'College Management System',
+      description: 'Comprehensive system for managing student data, admissions, and academic records.',
+      tech: ['Node.js', 'MSSQL', 'JavaScript'],
+      category: 'Web App'
+    },
+    {
+      title: 'Weather Application',
+      description: 'Real-time weather app with location-based forecasting and interactive maps.',
+      tech: ['JavaScript', 'API Integration'],
+      category: 'Web App'
+    },
+    {
+      title: 'Portfolio Website',
+      description: 'Personal portfolio showcasing projects with modern design and smooth animations.',
+      tech: ['React', 'Tailwind CSS'],
+      category: 'Portfolio'
+    },
+    {
+      title: 'Calculator App',
+      description: 'Scientific calculator with advanced mathematical operations and clean interface.',
+      tech: ['JavaScript', 'HTML', 'CSS'],
+      category: 'Utility'
+    },
+  ];
 
-        {/* Project Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+  return (
+    <section className={`min-h-screen pt-16 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        {/* Header */}
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <h2 className={`text-4xl lg:text-5xl font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+            Featured Projects
+          </h2>
+          <p className={`text-xl max-w-2xl mx-auto ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+            A showcase of my recent work and creative solutions
+          </p>
+        </motion.div>
+
+        {/* Projects Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              className="bg-gray-900 border border-blue-500 rounded-2xl overflow-hidden shadow-md hover:shadow-blue-500/30 transition transform hover:-translate-y-2 duration-300 group"
-              initial={{ opacity: 0, y: 30 }}
+              className={`rounded-2xl overflow-hidden shadow-lg group ${
+                isDark ? 'bg-gray-800' : 'bg-gray-50'
+              }`}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.02, y: -5 }}
             >
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-48 object-cover group-hover:opacity-90 transition duration-300"
-              />
+              {/* Project Image Placeholder */}
+              <div className={`h-48 flex items-center justify-center ${
+                isDark ? 'bg-gray-700' : 'bg-gray-200'
+              }`}>
+                <span className={`text-4xl ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
+                  📱
+                </span>
+              </div>
+              
+              {/* Project Info */}
               <div className="p-6">
-                <h2 className="text-xl font-semibold text-blue-400 mb-2 group-hover:text-cyan-400 transition">
-                  {project.title}
-                </h2>
-                <p className="text-gray-400 text-sm mb-3">{project.description}</p>
-                <span className="text-xs text-gray-500 italic">{project.tech}</span>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className={`text-xl font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                    {project.title}
+                  </h3>
+                  <span className="px-2 py-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-xs rounded-full">
+                    {project.category}
+                  </span>
+                </div>
+                <p className={`mb-4 leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                  {project.description}
+                </p>
+                
+                {/* Tech Stack */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.tech.map((tech, techIndex) => (
+                    <span
+                      key={techIndex}
+                      className={`px-2 py-1 text-xs font-medium rounded ${
+                        isDark ? 'bg-gray-700 text-gray-300' : 'bg-gray-200 text-gray-700'
+                      }`}
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex space-x-4">
+                  <button className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all text-sm">
+                    <FaExternalLinkAlt />
+                    Live Demo
+                  </button>
+                  <button className={`flex items-center gap-2 px-4 py-2 rounded-lg border-2 transition-all text-sm ${
+                    isDark 
+                      ? 'border-gray-700 text-gray-300 hover:bg-gray-800' 
+                      : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+                  }`}>
+                    <FaGithub />
+                    Code
+                  </button>
+                </div>
               </div>
             </motion.div>
           ))}

@@ -1,114 +1,127 @@
 import React from 'react';
 import { Typewriter } from 'react-simple-typewriter';
 import { motion } from 'framer-motion';
-import { FaReact, FaNodeJs, FaCss3Alt, FaGithub, FaDatabase } from 'react-icons/fa';
+import { FaArrowRight, FaDownload } from 'react-icons/fa';
+import { useTheme } from '../context/ThemeContext';
 import profileImage from '../assets/home.png';
 
 const Home = () => {
+  const { isDark } = useTheme();
+  
   return (
-       <section
-      id="home"
-      className={`transition-all duration-300 bg-gradient-to-b from-black to-gray-700 text-white py-[5%] px-[5%] min-h-screen`}
-    >
-      <div className="w-full flex flex-col lg:flex-row items-center gap-[5%]">
-        {/* Image Section */}
-        <motion.div
-          className="w-full lg:w-[40%] flex justify-center"
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-        >
-          <motion.img
-            src={profileImage}
-            alt="Muhammad Haris"
-            className="w-[80%] sm:w-[70%] md:w-[60%] lg:w-full max-w-[400px] h-auto object-cover shadow-lg hover:shadow-blue-500/20 transition-transform duration-500 hover:scale-105 rounded-xl"
-            whileHover={{ rotate: 1 }}
-          />
-        </motion.div>
-
-        {/* Content Section */}
-        <div className="w-full lg:w-[60%] text-center lg:text-left">
-          <motion.h1
-            className="text-[6vw] sm:text-[4vw] md:text-[3vw] font-extrabold bg-gradient-to-r from-blue-400 via-blue-600 to-cyan-400 text-transparent bg-clip-text uppercase mb-[2%]"
-            initial={{ opacity: 0, y: -20 }}
+    <section className={`min-h-screen pt-16 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Content */}
+          <motion.div
+            className="text-center lg:text-left"
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <Typewriter
-              words={['Muhammad Haris']}
-              loop={1}
-              cursor
-              cursorStyle="_"
-              typeSpeed={100}
-              deleteSpeed={50}
-              delaySpeed={2000}
-            />
-          </motion.h1>
-
-          <motion.h2
-            className="text-[4vw] sm:text-[2vw] text-blue-300 mb-[2%] font-semibold tracking-wide"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-          >
-            <Typewriter
-              words={['Frontend Developer', 'ReactJS Enthusiast', 'Full Stack Developer']}
-              loop
-              cursor
-              cursorStyle="_"
-              typeSpeed={80}
-              deleteSpeed={50}
-              delaySpeed={1000}
-            />
-          </motion.h2>
-
-          <motion.p
-            className="text-gray-400 text-[3.2vw] sm:text-[2vw] md:text-[1.3vw] leading-relaxed mb-[4%] max-w-[90%] lg:max-w-[80%] mx-auto lg:mx-0"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
-          >
-            I'm a passionate Software Engineer from COMSATS University, crafting scalable web apps
-            with React, Node.js, and Tailwind CSS. Currently working at SoftXcape Developers.
-          </motion.p>
-
-          {/* CTA Buttons */}
-          <motion.div
-            className="flex flex-col sm:flex-row gap-[3%] mt-[2%] justify-center lg:justify-start"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
-          >
-            <a
-              href="mailto:harisakbar5566@gmail.com"
-              className="bg-blue-500 text-white px-[6%] py-[2.5%] sm:px-[3%] sm:py-[1.2%] rounded-full hover:bg-blue-400 transition text-center text-[3vw] sm:text-[1.2vw]"
+            <motion.div
+              className={`inline-flex items-center px-4 py-2 rounded-full mb-6 ${
+                isDark ? 'bg-gray-800 text-blue-400' : 'bg-blue-50 text-blue-600'
+              }`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
             >
-              💼 Hire Me
-            </a>
-            <a
-              href="#projects"
-              className="border-2 border-blue-600 text-blue-500 px-[6%] py-[2.5%] sm:px-[3%] sm:py-[1.2%] rounded-full hover:bg-blue-400 hover:text-black transition text-center text-[3vw] sm:text-[1.2vw]"
+              <span className="text-sm font-medium">👋 Hello, I'm</span>
+            </motion.div>
+            
+            <h1 className={`text-5xl lg:text-7xl font-bold mb-6 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+              <Typewriter
+                words={['Muhammad Haris']}
+                loop={1}
+                cursor
+                cursorStyle="|"
+                typeSpeed={100}
+              />
+            </h1>
+            
+            <div className={`text-2xl lg:text-3xl font-light mb-8 ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+              <Typewriter
+                words={['Full Stack Developer', 'React Specialist', 'UI/UX Designer']}
+                loop
+                cursor
+                cursorStyle="_"
+                typeSpeed={80}
+                deleteSpeed={50}
+                delaySpeed={2000}
+              />
+            </div>
+
+            <motion.p
+              className={`text-lg leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
             >
-              🔍 View Projects
-            </a>
+              I create exceptional digital experiences with modern technologies. 
+              Passionate about building scalable, user-centric applications that drive results.
+            </motion.p>
+
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
+            >
+              <motion.a
+                href="mailto:harisakbar5566@gmail.com"
+                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all shadow-lg"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Get In Touch
+                <FaArrowRight />
+              </motion.a>
+              
+              <motion.a
+                href="#projects"
+                className={`inline-flex items-center justify-center gap-3 px-8 py-4 font-semibold rounded-lg border-2 transition-all shadow-lg ${
+                  isDark 
+                    ? 'border-gray-700 text-gray-300 hover:bg-gray-800' 
+                    : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+                }`}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                View Work
+                <FaDownload />
+              </motion.a>
+            </motion.div>
           </motion.div>
 
-          {/* Tech Icons */}
+          {/* Profile Image */}
           <motion.div
-            className="flex flex-wrap justify-center lg:justify-start gap-[4%] text-[7vw] sm:text-[2vw] text-blue-400 mt-[5%]"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2, duration: 0.6 }}
+            className="flex justify-center"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
           >
-            {[FaReact, FaNodeJs, FaCss3Alt, FaDatabase, FaGithub].map((Icon, idx) => (
+            <div className="relative">
               <motion.div
-                key={idx}
-                whileHover={{ scale: 1.2, rotate: 5 }}
-                className="transition-all"
+                className="w-80 h-80 lg:w-96 lg:h-96 rounded-2xl overflow-hidden shadow-2xl"
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
               >
-                <Icon className="hover:text-cyan-300 transition" />
+                <img
+                  src={profileImage}
+                  alt="Muhammad Haris"
+                  className="w-full h-full object-cover"
+                />
               </motion.div>
-            ))}
+              
+              <motion.div
+                className="absolute -bottom-4 -right-4 px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-lg shadow-lg"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 3, repeat: Infinity }}
+              >
+                <span className="text-sm font-semibold">Available for hire</span>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>
