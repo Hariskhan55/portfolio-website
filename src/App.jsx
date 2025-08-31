@@ -1,32 +1,20 @@
 import React from 'react';
 import { ThemeProvider } from './context/ThemeContext';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import Home from './pages/Home';
-import About from './pages/About';
-import Skills from './pages/Skills';
-import Projects from './pages/Projects';
-import Services from './pages/Services';
-import Testimonials from './pages/Testimonials';
-import Contact from './pages/Contact';
 
 function App() {
   return (
     <ThemeProvider>
-      <div className="min-h-screen">
-        <Navbar />
-        
-        <main>
-          <section id="home"><Home /></section>
-          <section id="about"><About /></section>
-          <section id="skills"><Skills /></section>
-          <section id="projects"><Projects /></section>
-          <section id="services"><Services /></section>
-          <section id="testimonials"><Testimonials /></section>
-          <section id="contact"><Contact /></section>
-        </main>
-        
-        <Footer />
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Portfolio Ready
+            </h1>
+            <p className="text-lg text-gray-600 dark:text-gray-400">
+              Please share your style folder contents to apply the design
+            </p>
+          </div>
+        </div>
       </div>
     </ThemeProvider>
   );

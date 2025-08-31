@@ -28,32 +28,37 @@ const Navbar = () => {
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       scrolled 
         ? isDark 
-          ? 'bg-gray-900/95 backdrop-blur-md shadow-xl border-b border-gray-800' 
-          : 'bg-white/95 backdrop-blur-md shadow-xl border-b border-gray-200'
+          ? 'bg-gray-900/95 backdrop-blur-md shadow-2xl border-b border-gray-800' 
+          : 'bg-white/95 backdrop-blur-md shadow-2xl border-b border-gray-200'
         : 'bg-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <motion.div 
-            className="flex items-center space-x-2"
+            className="flex items-center space-x-3"
             whileHover={{ scale: 1.05 }}
           >
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">MH</span>
+            <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+              <span className="text-white font-bold text-xl">MH</span>
             </div>
-            <span className={`font-bold text-xl ${isDark ? 'text-white' : 'text-gray-900'}`}>
-              Portfolio
-            </span>
+            <div className="hidden sm:block">
+              <span className={`font-bold text-2xl ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                Muhammad Haris
+              </span>
+              <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'} -mt-1`}>
+                Full Stack Developer
+              </p>
+            </div>
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-8">
             {navItems.map((item, index) => (
               <motion.a
                 key={index}
                 href={item.href}
-                className={`text-sm font-medium transition-colors hover:text-blue-500 ${
+                className={`text-sm font-semibold transition-colors hover:text-blue-600 ${
                   isDark ? 'text-gray-300' : 'text-gray-700'
                 }`}
                 whileHover={{ y: -2 }}
@@ -68,7 +73,7 @@ const Navbar = () => {
             {/* Theme Toggle */}
             <motion.button
               onClick={toggleTheme}
-              className={`p-2 rounded-lg transition-colors ${
+              className={`p-3 rounded-xl transition-colors shadow-lg ${
                 isDark 
                   ? 'bg-gray-800 text-yellow-400 hover:bg-gray-700' 
                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
@@ -76,13 +81,13 @@ const Navbar = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              {isDark ? <FaSun size={18} /> : <FaMoon size={18} />}
+              {isDark ? <FaSun size={20} /> : <FaMoon size={20} />}
             </motion.button>
 
             {/* CTA Button */}
             <motion.a
               href="mailto:harisakbar5566@gmail.com"
-              className="hidden md:inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all"
+              className="hidden lg:inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all shadow-lg"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -92,13 +97,13 @@ const Navbar = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`md:hidden p-2 rounded-lg transition-colors ${
+              className={`lg:hidden p-3 rounded-xl transition-colors shadow-lg ${
                 isDark 
                   ? 'bg-gray-800 text-white hover:bg-gray-700' 
                   : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
               }`}
             >
-              {isOpen ? <FaTimes size={18} /> : <FaBars size={18} />}
+              {isOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
             </button>
           </div>
         </div>
@@ -106,21 +111,21 @@ const Navbar = () => {
         {/* Mobile Menu */}
         {isOpen && (
           <motion.div
-            className={`md:hidden ${
+            className={`lg:hidden ${
               isDark ? 'bg-gray-900 border-gray-800' : 'bg-white border-gray-200'
-            } border-t`}
+            } border-t rounded-b-2xl shadow-2xl`}
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
           >
-            <div className="px-2 pt-2 pb-3 space-y-1">
+            <div className="px-4 py-6 space-y-3">
               {navItems.map((item, index) => (
                 <a
                   key={index}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className={`block px-3 py-2 text-base font-medium rounded-md transition-colors hover:text-blue-500 ${
-                    isDark ? 'text-gray-300' : 'text-gray-700'
+                  className={`block px-4 py-3 text-base font-semibold rounded-xl transition-colors hover:text-blue-600 ${
+                    isDark ? 'text-gray-300 hover:bg-gray-800' : 'text-gray-700 hover:bg-gray-50'
                   }`}
                 >
                   {item.label}
@@ -128,7 +133,7 @@ const Navbar = () => {
               ))}
               <a
                 href="mailto:harisakbar5566@gmail.com"
-                className="block w-full mt-4 px-3 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium rounded-lg text-center"
+                className="block w-full mt-4 px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl text-center"
               >
                 Hire Me
               </a>
