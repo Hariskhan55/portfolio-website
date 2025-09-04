@@ -59,13 +59,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeSection, setActiveSection, isDa
             src="public/profile.png" 
             alt="Muhammad Haris" 
             className="w-full h-full object-cover"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.style.display = 'none';
-              const parent = target.parentElement!;
-              parent.className += ' bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-xl';
-              parent.textContent = 'MH';
-            }}
+          
           />
         </div>
         <h2 className="text-lg font-semibold text-gray-900 dark:text-white animate-fade-in">Muhammad Haris</h2>
