@@ -53,7 +53,7 @@ const Home: React.FC = () => {
           <div className="relative w-32 h-32 sm:w-40 md:w-48 sm:h-40 md:h-48 mx-auto">
             <div className="w-full h-full rounded-2xl shadow-2xl overflow-hidden border-4 border-blue-600 dark:border-blue-500 transform hover:scale-105 transition-all duration-500 bg-white dark:bg-gray-800">
               <img 
-                src="public/profile.png" 
+                src="/profile.png" 
                 alt="Muhammad Haris" 
                 className="w-full h-full object-cover"
                 onError={(e) => {
