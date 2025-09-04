@@ -1,31 +1,36 @@
-import React from 'react';
-import { ThemeProvider } from './context/ThemeContext';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Resume from './components/Resume';
-// Services removed - replaced with Projects
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import Testimonials from './components/Testimonials';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
+import React, { useState } from 'react';
+import Sidebar from './components/Sidebar';
+import MainContent from './components/MainContent';
 
 const App: React.FC = () => {
+  const [activeSection, setActiveSection] = useState('home');
+  const [isDark, setIsDark] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleTheme = () => {
+    setIsDark(!isDark);
+    document.documentElement.classList.toggle('dark');
+  };
+
+  const handleSectionChange = (section: string) => {
+    setActiveSection(section);
+    setIsMobileMenuOpen(false); // Close mobile menu when section changes
+  };
+
   return (
-    <ThemeProvider>
-      <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen">
-        <Navbar />
-        <Hero />
-        <About />
-        <Skills />
-        <Resume />
-        <Projects />
-        <Testimonials />
-        <Contact />
-        <Footer />
+    <div className={isDark ? 'dark' : ''}>
+      <div className="bg-white dark:bg-gray-900 min-h-screen">
+        <Sidebar 
+          activeSection={activeSection} 
+          setActiveSection={handleSectionChange}
+          isDark={isDark}
+          toggleTheme={toggleTheme}
+          isMobileMenuOpen={isMobileMenuOpen}
+          setIsMobileMenuOpen={setIsMobileMenuOpen}
+        />
+        <MainContent activeSection={activeSection} />
       </div>
-    </ThemeProvider>
+    </div>
   );
 };
 
