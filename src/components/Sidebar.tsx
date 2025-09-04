@@ -56,7 +56,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeSection, setActiveSection, isDa
       <div className="p-8 text-center border-b border-gray-200 dark:border-gray-700 mt-4">
         <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-4 border-blue-600 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
           <img 
-            src="public/profile.png" 
+            src="/profile.png" 
             alt="Muhammad Haris" 
             className="w-full h-full object-cover"
           
