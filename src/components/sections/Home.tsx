@@ -39,7 +39,7 @@ const Home: React.FC = () => {
   }, [letterIndex, isDeleting, fullName]);
 
   return (
-    <div className="flex items-center justify-center min-h-screen md:h-full p-4 sm:p-6 lg:p-8 bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-black dark:to-gray-800 relative overflow-hidden transition-all duration-500">
+    <div className="flex items-center justify-center min-h-screen p-4 sm:p-6 lg:p-8 pt-20 md:pt-4 bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-black dark:to-gray-800 relative overflow-hidden transition-all duration-500">
       {/* Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-20 w-72 h-72 bg-blue-600/20 dark:bg-blue-600/10 rounded-full blur-3xl animate-float"></div>
@@ -47,10 +47,10 @@ const Home: React.FC = () => {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-blue-600/10 to-blue-500/10 dark:from-blue-600/5 dark:to-blue-500/5 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="max-w-2xl text-center relative z-10 px-4 w-full">
+      <div className="max-w-4xl text-center relative z-10 px-2 sm:px-4 w-full">
         {/* Animated Profile Image */}
-        <div className="relative mb-8">
-          <div className="relative w-32 h-32 sm:w-40 md:w-48 sm:h-40 md:h-48 mx-auto">
+        <div className="relative mb-6 sm:mb-8">
+          <div className="relative w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-48 lg:h-48 mx-auto">
             <div className="w-full h-full rounded-2xl shadow-2xl overflow-hidden border-4 border-blue-600 dark:border-blue-500 transform hover:scale-105 transition-all duration-500 bg-white dark:bg-gray-800">
               <img 
                 src="/profile.png" 
@@ -76,45 +76,45 @@ const Home: React.FC = () => {
         </div>
 
         {/* Animated Name with Typewriter Effect */}
-        <div className="mb-4 h-16 sm:h-20 flex items-center justify-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-gray-900 via-blue-600 to-gray-900 dark:from-white dark:via-blue-100 dark:to-white bg-clip-text text-transparent drop-shadow-2xl">
+        <div className="mb-3 sm:mb-4 h-12 sm:h-16 md:h-20 flex items-center justify-center">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold bg-gradient-to-r from-gray-900 via-blue-600 to-gray-900 dark:from-white dark:via-blue-100 dark:to-white bg-clip-text text-transparent drop-shadow-2xl">
             {displayedText}
             <span className="animate-pulse text-blue-600 dark:text-blue-400">|</span>
           </h1>
         </div>
 
         {/* Animated Role */}
-        <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-6 h-8 sm:h-12 flex items-center justify-center">
+        <div className="text-base sm:text-lg md:text-xl lg:text-2xl mb-4 sm:mb-6 h-6 sm:h-8 md:h-12 flex items-center justify-center">
           <span className="text-blue-600 dark:text-blue-400 font-semibold animate-slide-up" key={currentRole}>
             {roles[currentRole]}
           </span>
         </div>
 
         {/* Description with typing effect */}
-        <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 mb-6 sm:mb-8 leading-relaxed animate-fade-in-delay max-w-xl mx-auto px-4">
+        <p className="text-sm sm:text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-6 sm:mb-8 leading-relaxed animate-fade-in-delay max-w-2xl mx-auto px-2 sm:px-4">
           I create modern web applications with clean code and beautiful design. 
           Currently working at <span className="text-blue-600 dark:text-blue-400 font-semibold bg-blue-100 dark:bg-blue-500/10 px-2 py-1 rounded">AeroSenergy</span> as a Frontend Developer.
         </p>
 
         {/* Animated Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center animate-fade-in-delay-2 items-center mb-8">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center animate-fade-in-delay-2 items-center mb-6 sm:mb-8 px-4">
           <button 
             onClick={() => window.location.href = 'mailto:hariskhan55@gmail.com'}
             className="group w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-110 hover:shadow-2xl hover:shadow-blue-500/25 border border-blue-500/50"
           >
-            <span className="flex items-center gap-2 group-hover:animate-pulse">
-              ✨ Get In Touch
+            <span className="flex items-center gap-2">
+              Get In Touch
             </span>
           </button>
           <a 
-            href="/Muhammad_Haris_Resume.pdf"
+            href="/Harisresume.pdf"
             download="Muhammad_Haris_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="group w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border-2 border-blue-600 bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 hover:bg-blue-600 hover:text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-110 hover:shadow-2xl hover:shadow-blue-500/25 backdrop-blur-sm inline-flex items-center justify-center"
           >
             <span className="flex items-center gap-2">
-              📄 Download CV
+              Download CV
             </span>
           </a>
         </div>

@@ -4,14 +4,14 @@ const Skills: React.FC = () => {
   const [animatedSkills, setAnimatedSkills] = useState<number[]>([]);
   
   const skills = [
-    { name: 'React.js', level: 90, icon: '⚛️' },
-    { name: 'Next.js', level: 85, icon: '🔺' },
-    { name: 'TypeScript', level: 80, icon: '📘' },
-    { name: 'JavaScript', level: 95, icon: '🟨' },
-    { name: 'Node.js', level: 85, icon: '🟢' },
-    { name: 'MongoDB', level: 80, icon: '🍃' },
-    { name: 'Tailwind CSS', level: 90, icon: '🎨' },
-    { name: 'Git', level: 85, icon: '📚' },
+    { name: 'React.js', level: 90, color: 'text-blue-500' },
+    { name: 'Next.js', level: 85, color: 'text-gray-900 dark:text-white' },
+    { name: 'TypeScript', level: 80, color: 'text-blue-600' },
+    { name: 'JavaScript', level: 95, color: 'text-yellow-500' },
+    { name: 'Node.js', level: 85, color: 'text-green-500' },
+    { name: 'MongoDB', level: 80, color: 'text-green-600' },
+    { name: 'Tailwind CSS', level: 90, color: 'text-cyan-500' },
+    { name: 'Git', level: 85, color: 'text-orange-500' },
   ];
 
   useEffect(() => {
@@ -52,9 +52,11 @@ const Skills: React.FC = () => {
               >
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-3">
-                    <span className="text-2xl animate-bounce" style={{ animationDelay: `${index * 0.1}s` }}>
-                      {skill.icon}
-                    </span>
+                    <div className={`w-8 h-8 ${skill.color} flex items-center justify-center`}>
+                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                      </svg>
+                    </div>
                     <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 transition-colors">
                       {skill.name}
                     </h3>

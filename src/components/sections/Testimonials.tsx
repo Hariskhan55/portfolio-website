@@ -6,48 +6,27 @@ const Testimonials: React.FC = () => {
   const testimonials = [
     {
       id: 1,
-      name: 'Ahmed Khan',
-      position: 'CEO, TechVision Solutions',
-      company: 'TechVision Solutions',
-      image: '👨‍💼',
+      name: 'Asad Ali',
+      position: 'CEO',
+      company: 'AeroSenergy',
       rating: 5,
-      text: 'Muhammad Haris delivered exceptional work on our e-commerce platform. His expertise in React and Next.js helped us create a fast, responsive website that exceeded our expectations.'
+      text: 'Muhammad Haris has been an exceptional frontend developer at AeroSenergy. His expertise in React and modern web technologies has significantly contributed to our project success. His attention to detail and problem-solving skills make him a valuable team member.'
     },
     {
       id: 2,
-      name: 'Sarah Johnson',
-      position: 'Project Manager, Digital Hub',
-      company: 'Digital Innovation Hub',
-      image: '👩‍💼',
+      name: 'Sara Khan',
+      position: 'Project Manager',
+      company: 'Developer Hub Corporation',
       rating: 5,
-      text: 'Working with Haris was a pleasure. His attention to detail and ability to translate complex requirements into beautiful, functional interfaces is remarkable.'
+      text: 'Working with Haris was a great experience. His ability to deliver high-quality frontend solutions on time and his collaborative approach made our projects successful. He consistently exceeded our expectations with clean, efficient code.'
     },
     {
       id: 3,
-      name: 'Ali Raza',
-      position: 'Startup Founder',
-      company: 'StartupLab',
-      image: '👨‍🚀',
+      name: 'Ahmed Hassan',
+      position: 'Lead Developer',
+      company: 'Code Alpha',
       rating: 5,
-      text: 'Haris built our AI translation tool from scratch. The real-time translation feature works flawlessly, and the UI is incredibly intuitive. Highly recommended!'
-    },
-    {
-      id: 4,
-      name: 'Maria Garcia',
-      position: 'Marketing Director',
-      company: 'Creative Agency',
-      image: '👩‍🎨',
-      rating: 5,
-      text: 'The portfolio website Haris created for our agency is stunning. It perfectly represents our brand and has significantly improved our client engagement.'
-    },
-    {
-      id: 5,
-      name: 'John Smith',
-      position: 'CTO, FinTech Solutions',
-      company: 'FinTech Solutions',
-      image: '👨‍💻',
-      rating: 5,
-      text: 'Haris integrated complex payment systems into our platform seamlessly. His knowledge of modern web technologies and security best practices is impressive.'
+      text: 'Haris started his journey with us and quickly proved his dedication to learning and excellence. His growth as a developer and his commitment to delivering quality work made him stand out from day one.'
     }
   ];
 
@@ -77,24 +56,26 @@ const Testimonials: React.FC = () => {
       <div className="max-w-4xl mx-auto relative z-10">
         <div className="text-center mb-12 animate-fade-in">
           <h2 className="text-4xl font-bold bg-gradient-to-r from-gray-900 via-blue-600 to-gray-900 dark:from-white dark:via-blue-100 dark:to-white bg-clip-text text-transparent mb-4">Testimonials</h2>
-          <p className="text-gray-600 dark:text-gray-400 animate-fade-in-delay">What clients say about my work</p>
+          <p className="text-gray-600 dark:text-gray-400">What clients say about my work</p>
         </div>
 
         <div className="relative">
           {/* Main Testimonial */}
-          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-8 mb-8 min-h-[300px] flex flex-col justify-center animate-fade-in hover:shadow-2xl transition-all duration-500">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-8 mb-8 min-h-[300px] flex flex-col justify-center animate-fade-in hover:shadow-xl transition-all duration-300">
             <div className="text-center">
-              <div className="text-6xl mb-4">
-                {testimonials[currentSlide].image}
+              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-6">
+                {testimonials[currentSlide].name.split(' ').map(n => n[0]).join('')}
               </div>
               
               <div className="flex justify-center mb-4">
                 {[...Array(testimonials[currentSlide].rating)].map((_, i) => (
-                  <span key={i} className="text-yellow-400 text-xl">⭐</span>
+                  <svg key={i} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
                 ))}
               </div>
               
-              <blockquote className="text-lg text-gray-600 dark:text-gray-400 italic mb-6 leading-relaxed">
+              <blockquote className="text-lg text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
                 "{testimonials[currentSlide].text}"
               </blockquote>
               
@@ -118,7 +99,9 @@ const Testimonials: React.FC = () => {
               onClick={prevSlide}
               className="w-12 h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center transition-colors"
             >
-              ←
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
             </button>
             
             {/* Dots Indicator */}
@@ -138,14 +121,16 @@ const Testimonials: React.FC = () => {
               onClick={nextSlide}
               className="w-12 h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center transition-colors"
             >
-              →
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
             </button>
           </div>
         </div>
 
-        {/* Thumbnail Testimonials */}
+        {/* All Testimonials Grid */}
         <div className="grid md:grid-cols-3 gap-4 mt-8">
-          {testimonials.slice(0, 3).map((testimonial, index) => (
+          {testimonials.map((testimonial, index) => (
             <div
               key={testimonial.id}
               className={`bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer transition-all hover:shadow-md ${
@@ -154,7 +139,9 @@ const Testimonials: React.FC = () => {
               onClick={() => setCurrentSlide(index)}
             >
               <div className="flex items-center mb-2">
-                <span className="text-2xl mr-3">{testimonial.image}</span>
+                <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-sm font-bold mr-3">
+                  {testimonial.name.split(' ').map(n => n[0]).join('')}
+                </div>
                 <div>
                   <h5 className="font-medium text-gray-900 dark:text-white text-sm">
                     {testimonial.name}

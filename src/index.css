@@ -201,6 +201,19 @@
   @apply bg-gray-400 dark:bg-gray-500;
 }
 
+/* Line clamp utility */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Aspect ratio utilities */
+.aspect-video {
+  aspect-ratio: 16 / 9;
+}
+
 /* Mobile Responsive Design */
 @media (max-width: 768px) {
   /* Ensure sidebar is hidden by default on mobile */
@@ -262,6 +275,15 @@
   .mobile-content {
     padding-top: 4rem;
   }
+  
+  /* Projects grid responsive */
+  .xl\:grid-cols-3 {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  }
+  
+  .lg\:grid-cols-2 {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  }
 }
 
 @media (max-width: 640px) {
@@ -270,7 +292,8 @@
   .sm\:grid-cols-2,
   .sm\:grid-cols-3,
   .md\:grid-cols-2,
-  .lg\:grid-cols-3 {
+  .lg\:grid-cols-3,
+  .xl\:grid-cols-3 {
     grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
   }
   
@@ -305,5 +328,15 @@
   .py-3 {
     padding-top: 0.5rem !important;
     padding-bottom: 0.5rem !important;
+  }
+  
+  /* Project cards full width on mobile */
+  .lg\:grid-cols-2 {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  }
+  
+  /* Reduce gap on mobile */
+  .gap-6 {
+    gap: 1rem !important;
   }
 }

@@ -39,7 +39,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeSection, setActiveSection, isDa
       )}
 
       {/* Sidebar */}
-      <div className={`fixed left-0 top-0 h-full w-80 bg-white dark:bg-gray-900 shadow-xl z-40 border-r border-gray-200 dark:border-gray-700 transform transition-transform duration-300 ${
+      <div className={`fixed left-0 top-0 h-full w-80 bg-white dark:bg-gray-900 shadow-xl z-40 border-r border-gray-200 dark:border-gray-700 transform transition-transform duration-300 flex flex-col ${
         isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
       } md:translate-x-0`}>
       {/* Theme Toggle - Top Corner */}
@@ -53,7 +53,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeSection, setActiveSection, isDa
       </div>
 
       {/* Profile Section */}
-      <div className="p-8 text-center border-b border-gray-200 dark:border-gray-700 mt-4">
+      <div className="p-8 text-center border-b border-gray-200 dark:border-gray-700 mt-4 flex-shrink-0">
         <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-4 border-blue-600 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
           <img 
             src="/profile.png" 
@@ -73,12 +73,15 @@ const Sidebar: React.FC<SidebarProps> = ({ activeSection, setActiveSection, isDa
       </div>
 
       {/* Navigation */}
-      <nav className="p-6">
+      <nav className="flex-1 p-6 pb-24 overflow-y-auto">
         <ul className="space-y-2">
           {navItems.map((item, index) => (
             <li key={item.id} style={{ animationDelay: `${index * 0.1}s` }}>
               <button
-                onClick={() => setActiveSection(item.id)}
+                onClick={() => {
+                  setActiveSection(item.id);
+                  setIsMobileMenuOpen(false);
+                }}
                 className={`w-full text-left p-3 rounded-lg transition-all duration-300 transform hover:scale-105 hover:translate-x-2 ${
                   activeSection === item.id
                     ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg border-l-4 border-blue-400'
@@ -93,15 +96,18 @@ const Sidebar: React.FC<SidebarProps> = ({ activeSection, setActiveSection, isDa
       </nav>
 
       {/* Hire Me Button */}
-      <div className="absolute bottom-6 left-6 right-6">
+      <div className="p-6 flex-shrink-0 border-t border-gray-200 dark:border-gray-700">
         <button
           onClick={() => {
             setActiveSection('contact');
             setIsMobileMenuOpen(false);
           }}
-          className="block w-full text-center px-4 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25 animate-glow"
+          className="block w-full text-center px-4 py-3 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-green-500/25 animate-glow"
         >
-          💼 Hire Me
+          <svg className="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2V6" />
+          </svg>
+          Hire Me
         </button>
       </div>
     </div>
